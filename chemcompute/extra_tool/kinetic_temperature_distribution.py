@@ -4,7 +4,6 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-from matplotlib import pyplot as plt
 
 #/home/auguste/Temporary_python/Summary_02_07_19/ekin_oszicar.dat
 
@@ -14,12 +13,12 @@ def test_ln(Nb, Temp, T):
     kb = 1.381e-23  # J.K-1 --or-- m2.kg.s-2.K-1
     _beta_ = 1 / (kb * Temp)
     if (N % 2 == 0):
-        A = 3 / 2 * N
+        A = int(3 / 2 * N)
         gamma = math.log(math.factorial(A-1))
         # print('A=\t', A)
         return A*(math.log(_beta_)-(_beta_*kb*T))+(A-1)*(math.log(A*kb*T))-gamma+math.log(3*N*kb/2)
     else:
-        A = 3 / 2 * N
+        A = int(3 / 2 * N)
         B = A - 1 / 2
         gamma = math.log((math.factorial(2 * B) / (4 ** B * math.factorial(B))) * math.sqrt(math.pi))
         # print('B=\t', B)
@@ -28,10 +27,12 @@ def test_ln(Nb, Temp, T):
 
 kinetic_energy_path = str(input("Enter the Path to the kinetic energy file:\n"))
 number_atom = int(input("Enter the number of atom considered in the kinetic energy (integer):\n"))
-ideal_temperature = float(input("Enter the ideal temperature (integer):\n"))
+ideal_temperature = int(input("Enter the ideal temperature (integer):\n"))
 
 kinetic_temperature = np.loadtxt(fname=kinetic_energy_path)[:, 1]*2*1.602*10**(-19)/(3*number_atom*1.381*10**(-23))
 tmin = int(np.min(kinetic_temperature))
+if tmin == 0:
+    tmin = 1e-10
 tmax = int(np.max(kinetic_temperature))
 _T_ = np.arange(tmin, tmax)
 
@@ -45,5 +46,4 @@ plt.ylabel('Quantity (a.u.)')
 plt.title('Normalized distribution of temperature of the system')
 plt.legend(loc=1, fontsize='x-small')
 fig = plt.gcf()
-fig.savefig('temperature_distribution.pdf')
-plt.show()
+fig.savefig('temperature_distribution.png')
