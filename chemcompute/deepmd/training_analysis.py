@@ -9,6 +9,9 @@ from matplotlib.backends.backend_pdf import PdfPages
 
 lcurve = np.loadtxt('lcurve.out', skiprows=1)
 
+
+
+
 with PdfPages('training_analysis.pdf') as pdf:
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Metadata informations
@@ -28,14 +31,14 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax = fig.add_subplot(111)
 
     # Loss
-    ax.plot(lcurve[:, 0], lcurve[:, 1], label='loss-validation', color='red')
-    ax.plot(lcurve[:, 0], lcurve[:, 2], label='loss-training', color='orange')
+    ax.scatter(lcurve[:, 0], lcurve[:, 1], s=15, linewidth=0.5, marker='+', alpha=0.9, label='loss-validation', c='red')
+    ax.scatter(lcurve[:, 0], lcurve[:, 2], s=15, linewidth=0.5, marker='+', alpha=0.9, label='loss-training', c='orange')
     # Energy RMSE
-    ax.plot(lcurve[:, 0], lcurve[:, 3], label='energy-validation', color='green')
-    ax.plot(lcurve[:, 0], lcurve[:, 4], label='energy-training', color='lime')
+    ax.scatter(lcurve[:, 0], lcurve[:, 3], s=15, linewidth=0.5, marker='+', alpha=0.9, label='energy-validation', c='green')
+    ax.scatter(lcurve[:, 0], lcurve[:, 4], s=15, linewidth=0.5, marker='+', alpha=0.9, label='energy-training', c='lime')
     # Force RMSE
-    ax.plot(lcurve[:, 0], lcurve[:, 5], label='force-validation', color='blue')
-    ax.plot(lcurve[:, 0], lcurve[:, 6], label='force-training', color='cyan')
+    ax.scatter(lcurve[:, 0], lcurve[:, 5], s=15, linewidth=0.5, marker='+', alpha=0.9, label='force-validation', c='blue')
+    ax.scatter(lcurve[:, 0], lcurve[:, 6], s=15, linewidth=0.5, marker='+', alpha=0.9, label='force-training', c='cyan')
 
 
     # Parameters
@@ -60,7 +63,7 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax.set_ylabel('Loss function', fontsize=20)
 
 
-    ax.legend(fontsize=10, loc='lower center', bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
+    ax.legend(fontsize=10, loc='lower center', markerscale=3, bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
 
     
 
@@ -78,8 +81,8 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax = fig.add_subplot(111)
 
 
-    ax.plot(lcurve[:, 0], lcurve[:, 1], label='validation set', color='red')
-    ax.plot(lcurve[:, 0], lcurve[:, 2], label='training set', color='orange')
+    ax.scatter(lcurve[:, 0], lcurve[:, 1], s=10, linewidth=0.5, marker='+', label='validation set', c='red')
+    ax.scatter(lcurve[:, 0], lcurve[:, 2], s=10, linewidth=0.5, marker='+', label='training set', c='orange')
 
 
     # Parameters
@@ -104,7 +107,7 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax.set_ylabel('Loss function', fontsize=20)
 
 
-    ax.legend(fontsize=10, loc='lower center', bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
+    ax.legend(fontsize=10, loc='lower center', markerscale=3, bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
 
     
 
@@ -123,8 +126,8 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax = fig.add_subplot(111)
 
 
-    ax.plot(lcurve[:, 0], lcurve[:, 3], label='validation set', color='green')
-    ax.plot(lcurve[:, 0], lcurve[:, 4], label='training set', color='lime')
+    ax.scatter(lcurve[:, 0], lcurve[:, 3], s=15, linewidth=0.5, marker='+', alpha=0.9, label='energy-validation', c='green')
+    ax.scatter(lcurve[:, 0], lcurve[:, 4], s=15, linewidth=0.5, marker='+', alpha=0.9, label='energy-training', c='lime')
 
 
     # Parameters
@@ -149,7 +152,7 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax.set_ylabel('Energy RMSE (eV)', fontsize=20)
 
 
-    ax.legend(fontsize=10, loc='lower center', bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
+    ax.legend(fontsize=10, loc='lower center', markerscale=3, bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
 
     
 
@@ -169,8 +172,8 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax = fig.add_subplot(111)
 
 
-    ax.plot(lcurve[:, 0], lcurve[:, 5], label='validation set', color='blue')
-    ax.plot(lcurve[:, 0], lcurve[:, 6], label='training set', color='cyan')
+    ax.scatter(lcurve[:, 0], lcurve[:, 5], s=15, linewidth=0.5, marker='+', alpha=0.9, label='force-validation', c='blue')
+    ax.scatter(lcurve[:, 0], lcurve[:, 6], s=15, linewidth=0.5, marker='+', alpha=0.9, label='force-training', c='cyan')
 
 
     # Parameters
@@ -195,10 +198,11 @@ with PdfPages('training_analysis.pdf') as pdf:
     ax.set_ylabel(r'Force RMSE (eV/$\AA^{2}$)', fontsize=20)
 
 
-    ax.legend(fontsize=10, loc='lower center', bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
+    ax.legend(fontsize=10, loc='lower center', markerscale=3, bbox_to_anchor=(0.5, 1), frameon=False, ncols=4)
 
     
 
 
     pdf.savefig(bbox_inches='tight')
     plt.close()
+
