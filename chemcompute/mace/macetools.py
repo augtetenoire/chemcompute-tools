@@ -57,18 +57,18 @@ class configuration:
     
     def read_header(self, tupple_header):
         for i in range(len(tupple_header)):
-            if "Lattice" in b[i]:
-                self.lattice = re.findall(r"[-+]?(?:\d*\.*\d+)", b[i])
-            elif "Properties" in b[i]:
-                self.properties = b[i].replace('Properties=', '')
-            elif "dihedral_angle" in b[i]:
-                self.dihedral_angle = float(re.findall(r"[-+]?(?:\d*\.*\d+)", b[i])[0])
-            elif "energy" in b[i]:
-                self.energy = float(b[i].replace('energy=', ''))
-            elif "pbc" in b[i]:
-                self.pbc = " ".join(re.split("[^FT]*", b[i]))
-            elif "config_type" in b[i]:
-                 self.config_type = b[i].replace('config_type=', '')
+            if "Lattice" in tupple_header[i]:
+                self.lattice = re.findall(r"[-+]?(?:\d*\.*\d+)", tupple_header[i])
+            elif "Properties" in tupple_header[i]:
+                self.properties = tupple_header[i].replace('Properties=', '')
+            elif "dihedral_angle" in tupple_header[i]:
+                self.dihedral_angle = float(re.findall(r"[-+]?(?:\d*\.*\d+)", tupple_header[i])[0])
+            elif "energy" in tupple_header[i]:
+                self.energy = float(tupple_header[i].replace('energy=', ''))
+            elif "pbc" in tupple_header[i]:
+                self.pbc = " ".join(re.split("[^FT]*", tupple_header[i]))
+            elif "config_type" in tupple_header[i]:
+                 self.config_type = tupple_header[i].replace('config_type=', '')
 
     
     def read_conf(self, extracted_tupple):
@@ -122,9 +122,9 @@ class configuration:
                 # Write xyz
                 for i in range(len(self.latoms)):
                     foo.write("\n")
-                    foo.write(str(self.latoms[i] + '{:15.8f}'.format(self.lpos[i][0]) + '{:15.8f}'.format(self.lpos[i][1]) + '{:15.8f}'.format(self.lpos[i][2])))
+                    foo.write(str(self.latoms[i] + '{:15.5f}'.format(self.lpos[i][0]) + '{:15.5f}'.format(self.lpos[i][1]) + '{:15.5f}'.format(self.lpos[i][2])))
                     if type(self.lforces) != type(None):
-                        foo.write(str('{:15.8f}'.format(self.lforces[i][0]) + '{:15.8f}'.format(self.lforces[i][1]) + '{:15.8f}'.format(self.lforces[i][2])))
+                        foo.write(str('{:15.5f}'.format(self.lforces[i][0]) + '{:15.5f}'.format(self.lforces[i][1]) + '{:15.5f}'.format(self.lforces[i][2])))
 
                               
         elif mode == "a":
@@ -148,9 +148,9 @@ class configuration:
                 # Write xyz
                 for i in range(len(self.latoms)):
                     foo.write("\n")
-                    foo.write(str(self.latoms[i] + '{:15.8f}'.format(self.lpos[i][0]) + '{:15.8f}'.format(self.lpos[i][1]) + '{:15.8f}'.format(self.lpos[i][2])))
+                    foo.write(str(self.latoms[i] + '{:15.5f}'.format(self.lpos[i][0]) + '{:15.5f}'.format(self.lpos[i][1]) + '{:15.5f}'.format(self.lpos[i][2])))
                     if type(self.lforces) != type(None):
-                        foo.write(str('{:15.8f}'.format(self.lforces[i][0]) + '{:15.8f}'.format(self.lforces[i][1]) + '{:15.8f}'.format(self.lforces[i][2])))
+                        foo.write(str('{:15.5f}'.format(self.lforces[i][0]) + '{:15.5f}'.format(self.lforces[i][1]) + '{:15.5f}'.format(self.lforces[i][2])))
 
                 foo.write("\n")
 

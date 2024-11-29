@@ -7,5 +7,5 @@ setup(name='chemcompute',
       author='Auguste TETENOIRE',
       author_email='auguste.tetenoire.pro@gmail.com',
       license='CNRS',
-      packages=['chemcompute', 'chemcompute.ams', 'chemcompute.common', 'chemcompute.dftbplus', 'chemcompute.deepmd'],
+      packages=['chemcompute', 'chemcompute.ams', 'chemcompute.common', 'chemcompute.dftbplus', 'chemcompute.deepmd', 'chemcompute.mace'],
       zip_safe=False)
