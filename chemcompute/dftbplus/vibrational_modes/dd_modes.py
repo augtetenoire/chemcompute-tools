@@ -10,7 +10,9 @@ from joblib import Parallel, delayed
 import multiprocessing
 from vaspfric.tools1 import dftb_load_modes_out
 
-
+#Use with 
+# ipython ~/github/chemcompute-tools/chemcompute/dftbplus/vibrational_modes/dd_modes.py . 10 Au9 C20!
+# ase gui for the numbers
 
 # Check the doog number of the specie with :    ase gui geom.out.gen
 
