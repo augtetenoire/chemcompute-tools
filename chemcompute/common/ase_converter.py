@@ -41,7 +41,7 @@ else:
 #                     help='file that should be converted')
 
 print('\nLoad\t%s' % file)
-a = ase.io.read(file)
+a = ase.io.read(file, index=':')
 
 
 # basefile = basename(file)
